@@ -7,12 +7,13 @@ use De\Idrinth\SimpleConsole\Interfaces\Application as ApplicationInterface;
 
 class Application implements ApplicationInterface
 {
+    private $args;
     /**
      * @param string $name
      */
     public function __construct($name)
     {
-
+        $this->args = $_SERVER['argv'];
     }
 
     /**

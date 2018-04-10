@@ -2,6 +2,7 @@
 
 namespace De\Idrinth\Test\SimpleConsole;
 
+use De\Idrinth\SimpleConsole\Interfaces\Command;
 use PHPUnit\Framework\TestCase;
 
 class CommandTest extends TestCase

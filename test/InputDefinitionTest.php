@@ -3,11 +3,17 @@
 namespace De\Idrinth\Test\SimpleConsole;
 
 use De\Idrinth\SimpleConsole\Implementation\InputDefinition\BoolArrayDefinition;
+use De\Idrinth\SimpleConsole\Implementation\InputDefinition\BoolDefinition;
+use De\Idrinth\SimpleConsole\Implementation\InputDefinition\ValueDefinition;
+use De\Idrinth\SimpleConsole\Implementation\InputDefinition\ArrayDefinition;
 use De\Idrinth\SimpleConsole\Interfaces\InputDefinition;
 use PHPUnit\Framework\TestCase;
 
 class InputDefinitionTest extends TestCase
 {
+    /**
+     * @return array
+     */
     public function provideDeclaration()
     {
         return array(
