@@ -14,7 +14,8 @@ class CommandTest extends TestCase
             array($this->getCommand(), 0, 8),
             array($this->getCommand(2), 2, 10),
             array($this->getCommand(1,3), 1, 12),
-            array($this->getCommand(12,1), 12, 21)
+            array($this->getCommand(12,1), 12, 21),
+            array($this->getCommand(1,1,3), 1, 13)
         );
     }
 
@@ -23,7 +24,7 @@ class CommandTest extends TestCase
      * @param int $duplicates
      * @return Command
      */
-    private function getCommand($uniques = 0, $duplicates = 0)
+    private function getCommand($uniques = 0, $duplicates = 0, $fakes = 0)
     {
         $definitions = array();
         for ($i = 0; $i < $uniques; $i++) {
@@ -38,13 +39,16 @@ class CommandTest extends TestCase
         for ($j = 0; $j < $duplicates; $j++) {
             $definitions[] = clone $definitions[0];
         }
+        for ($k = 0; $k < $fakes; $k++) {
+            $definitions[] = 'I am fake';
+        }
         $command = $this
             ->getMockBuilder('De\Idrinth\SimpleConsole\Implementation\Command')
             ->setConstructorArgs(array('name', $definitions))
             ->getMockForAbstractClass();
         $command->expects($this->once())
             ->method('execute')
-            ->willReturn(8+$uniques+$duplicates);
+            ->willReturn(8+$uniques+$duplicates+$fakes);
         return $command;
     }
 
