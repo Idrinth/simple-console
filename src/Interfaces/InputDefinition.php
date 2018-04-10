@@ -12,11 +12,6 @@ interface InputDefinition
     /**
      * @return boolean
      */
-    public function isOption();
-
-    /**
-     * @return boolean
-     */
     public function isRequired();
 
     /**
@@ -25,13 +20,10 @@ interface InputDefinition
     public function isBoolean();
 
     /**
-     * @return boolean
+     * apply defaults and constraints and return cleaned array
+     * @param array $input
+     * @return array
+     * @throws InvalidArgumentException if it's required or missing or doesnn't match the constraints
      */
-    public function isArray();
-
-    /**
-     * @param mixed $input
-     * @return boolean
-     */
-    public function isValid($input);
+    public function process($input);
 }

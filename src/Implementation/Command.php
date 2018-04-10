@@ -5,9 +5,19 @@ namespace De\Idrinth\SimpleConsole\Implementation;
 use De\Idrinth\SimpleConsole\Interfaces\Command as CommandInterface;
 use De\Idrinth\SimpleConsole\Interfaces\Output as OutputInterface;
 use De\Idrinth\SimpleConsole\Interfaces\Input as InputInterface;
+use De\Idrinth\SimpleConsole\Interfaces\InputDefinition as InputDefinitionInterface;
 
 abstract class Command implements CommandInterface
 {
+    /**
+     * @param string $name
+     * @param InputDefinitionInterface $definitions
+     */
+    public function __construct($name, array $definitions = array())
+    {
+
+    }
+
     /**
      * @return string
      */
@@ -17,7 +27,7 @@ abstract class Command implements CommandInterface
     }
 
     /**
-     * @return InputDefinition[]
+     * @return InputDefinitionInterface[]
      */
     public function getDefinition()
     {

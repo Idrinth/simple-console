@@ -7,17 +7,21 @@ use De\Idrinth\SimpleConsole\Interfaces\InputDefinition as InputDefinitionInterf
 class InputDefinition implements InputDefinitionInterface
 {
     /**
-     * @return string
+     * @param string $name
+     * @param boolean $required
+     * @param boolean $boolean
+     * @param string $regex
+     * @param mixed $default
      */
-    public function getName()
+    public function __construct($name, $required, $boolean, $regex, $default)
     {
 
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function isOption()
+    public function getName()
     {
 
     }
@@ -39,18 +43,12 @@ class InputDefinition implements InputDefinitionInterface
     }
 
     /**
-     * @return boolean
+     * apply defaults and constraints and return cleaned array
+     * @param array $input
+     * @return array
+     * @throws InvalidArgumentException if it's required or missing or doesnn't match the constraints
      */
-    public function isArray()
-    {
-
-    }
-
-    /**
-     * @param mixed $input
-     * @return boolean
-     */
-    public function isValid($input)
+    public function process($input)
     {
 
     }
