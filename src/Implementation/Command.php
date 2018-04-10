@@ -6,7 +6,7 @@ use De\Idrinth\SimpleConsole\Interfaces\Command as CommandInterface;
 use De\Idrinth\SimpleConsole\Interfaces\Output as OutputInterface;
 use De\Idrinth\SimpleConsole\Interfaces\Input as InputInterface;
 
-class Command implements CommandInterface
+abstract class Command implements CommandInterface
 {
     /**
      * @return string
@@ -29,8 +29,5 @@ class Command implements CommandInterface
      * @param OutputInterface $output
      * @return int exit code
      */
-    public function execute(InputInterface $input, OutputInterface $output)
-    {
-
-    }
+    abstract public function execute(InputInterface $input, OutputInterface $output);
 }
