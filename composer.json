@@ -1,0 +1,11 @@
+{
+    "name": "idrinth/simple-console",
+    "authors": [
+        {
+            "name": "Björn Büttner"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^4.8.36"
+    }
+}
