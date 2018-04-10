@@ -2,10 +2,21 @@
     "name": "idrinth/simple-console",
     "authors": [
         {
-            "name": "Björn Büttner"
+            "name": "Björn Büttner",
+            "homepage": "https://github.com/idrinth"
         }
     ],
     "require-dev": {
         "phpunit/phpunit": "^4.8.36"
+    },
+    "autoload": {
+        "psr-4": {
+            "De\\Idrinth\\SimpleConsole\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "De\\Idrinth\\Test\\SimpleConsole\\": "src"
+        }
     }
 }
