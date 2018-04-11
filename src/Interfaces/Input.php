@@ -14,7 +14,7 @@ interface Input
 
     /**
      * @throws InvalidArgumentException
-     * @param type $name
+     * @param string $name
      * @return mixed
      */
     public function get($name);
