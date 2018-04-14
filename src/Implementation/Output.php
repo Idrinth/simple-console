@@ -6,15 +6,22 @@ use De\Idrinth\SimpleConsole\Interfaces\Output as OutputInterface;
 
 class Output implements OutputInterface
 {
+
+    private $formatReset = "[0m";
+
+    private function output($format, $message){
+        if(!empty($message)){
+            echo $format.$message.$this->formatReset;
+        }
+        echo "\n";
+    }
+
     /**
      * @param string $message
      */
     public function info($message)
     {
-        if(!empty($message)){
-            echo "[37m[2m[3m".$message."[0m";
-        }
-        echo "\n";
+        $this->output("[37m[2m[3m", $message);
     }
 
     /**
@@ -22,10 +29,7 @@ class Output implements OutputInterface
      */
     public function success($message)
     {
-        if(!empty($message)){
-            echo "[32m[1m".$message."[0m";
-        }
-        echo "\n";
+        $this->output("[32m[1m", $message);
     }
 
     /**
@@ -33,10 +37,7 @@ class Output implements OutputInterface
      */
     public function warning($message)
     {
-        if(!empty($message)){
-            echo "[33m".$message."[0m";
-        }
-        echo "\n";
+        $this->output("[33m", $message);
     }
 
     /**
@@ -44,9 +45,6 @@ class Output implements OutputInterface
      */
     public function error($message)
     {
-        if(!empty($message)){
-            echo "[31m[1m".$message."[0m";
-        }
-        echo "\n";
+        $this->output("[31m[1m", $message);
     }
 }
