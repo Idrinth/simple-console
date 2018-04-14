@@ -6,12 +6,38 @@ use De\Idrinth\SimpleConsole\Interfaces\Output as OutputInterface;
 
 class Output implements OutputInterface
 {
+    /**
+     * @var string
+     */
+    public static $formatReset = "[0m";
 
-    private $formatReset = "[0m";
+    /**
+     * @var string
+     */
+    public static $formatInfo = "[37m[2m[3m";
 
+    /**
+     * @var string
+     */
+    public static $formatSuccess = "[32m[1m";
+
+    /**
+     * @var string
+     */
+    public static $formatError = "[31m[1m";
+
+    /**
+     * @var string
+     */
+    public static $formatWarning = "[33m";
+
+    /**
+     * @param string $format
+     * @param string $message
+     */
     private function output($format, $message){
         if(!empty($message)){
-            echo $format.$message.$this->formatReset;
+            echo $format.$message.self::$formatReset;
         }
         echo "\n";
     }
@@ -21,7 +47,7 @@ class Output implements OutputInterface
      */
     public function info($message)
     {
-        $this->output("[37m[2m[3m", $message);
+        $this->output(self::$formatInfo, $message);
     }
 
     /**
@@ -29,7 +55,7 @@ class Output implements OutputInterface
      */
     public function success($message)
     {
-        $this->output("[32m[1m", $message);
+        $this->output(self::$formatSuccess, $message);
     }
 
     /**
@@ -37,7 +63,7 @@ class Output implements OutputInterface
      */
     public function warning($message)
     {
-        $this->output("[33m", $message);
+        $this->output(self::$formatWarning, $message);
     }
 
     /**
@@ -45,6 +71,6 @@ class Output implements OutputInterface
      */
     public function error($message)
     {
-        $this->output("[31m[1m", $message);
+        $this->output(self::$formatError, $message);
     }
 }
