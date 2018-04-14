@@ -58,7 +58,7 @@ class OutputTest extends TestCase
     public function testError(Output $output, $text)
     {
         ob_start();
-        $output->info($text);
+        $output->error($text);
         $this->assertEquals("[31m[1m".$text."[0m\n", ob_get_clean());
     }
 
@@ -70,7 +70,7 @@ class OutputTest extends TestCase
     public function testWarning(Output $output, $text)
     {
         ob_start();
-        $output->info($text);
+        $output->warning($text);
         $this->assertEquals("[33m".$text."[0m\n", ob_get_clean());
     }
 
@@ -82,7 +82,7 @@ class OutputTest extends TestCase
     public function testSuccess(Output $output, $text)
     {
         ob_start();
-        $output->info($text);
+        $output->success($text);
         $this->assertEquals("[32m[1m".$text."[0m\n", ob_get_clean());
     }
 }

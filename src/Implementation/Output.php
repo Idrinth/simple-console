@@ -11,7 +11,10 @@ class Output implements OutputInterface
      */
     public function info($message)
     {
-
+        if(!empty($message)){
+            echo "[37m[2m[3m".$message."[0m";
+        }
+        echo "\n";
     }
 
     /**
@@ -19,7 +22,10 @@ class Output implements OutputInterface
      */
     public function success($message)
     {
-
+        if(!empty($message)){
+            echo "[32m[1m".$message."[0m";
+        }
+        echo "\n";
     }
 
     /**
@@ -27,7 +33,10 @@ class Output implements OutputInterface
      */
     public function warning($message)
     {
-
+        if(!empty($message)){
+            echo "[33m".$message."[0m";
+        }
+        echo "\n";
     }
 
     /**
@@ -35,6 +44,9 @@ class Output implements OutputInterface
      */
     public function error($message)
     {
-
+        if(!empty($message)){
+            echo "[31m[1m".$message."[0m";
+        }
+        echo "\n";
     }
 }
