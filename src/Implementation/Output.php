@@ -9,31 +9,47 @@ class Output implements OutputInterface
     /**
      * @var string
      */
-    public static $formatReset = "[0m";
+    private static $formatReset = "[0m";
 
     /**
      * @var string
      */
-    public static $formatInfo = "[37m[2m[3m";
+    private static $red = "[31m";
 
     /**
      * @var string
      */
-    public static $formatSuccess = "[32m[1m";
+    private static $green = "[32m";
 
     /**
      * @var string
      */
-    public static $formatError = "[31m[1m";
+    private static $yellow = "[33m";
 
     /**
      * @var string
      */
-    public static $formatWarning = "[33m";
+    private static $white = "[37m";
+
+    /**
+     * @var string
+     */
+    private static $bold = "[1m";
+
+    /**
+     * @var string
+     */
+    private static $faint = "[2m";
+
+    /**
+     * @var string
+     */
+    private static $italic = "[3m";
 
     /**
      * @param string $format
      * @param string $message
+     * @return void
      */
     private function output($format, $message){
         if(!empty($message)){
@@ -44,33 +60,37 @@ class Output implements OutputInterface
 
     /**
      * @param string $message
+     * @return void
      */
     public function info($message)
     {
-        $this->output(self::$formatInfo, $message);
+        $this->output(self::$white.self::$faint.self::$italic, $message);
     }
 
     /**
      * @param string $message
+     * @return void
      */
     public function success($message)
     {
-        $this->output(self::$formatSuccess, $message);
+        $this->output(self::$green.self::$bold, $message);
     }
 
     /**
      * @param string $message
+     * @return void
      */
     public function warning($message)
     {
-        $this->output(self::$formatWarning, $message);
+        $this->output(self::$yellow, $message);
     }
 
     /**
      * @param string $message
+     * @return void
      */
     public function error($message)
     {
-        $this->output(self::$formatError, $message);
+        $this->output(self::$red.self::$bold, $message);
     }
 }
