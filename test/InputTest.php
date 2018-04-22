@@ -19,7 +19,7 @@ class InputTest extends TestCase
     }
 
     /**
-     * @dataProvider provideNodeExisting
+     * @dataProvider provideNoneExisting
      * @expectedException InvalidArgumentException
      * @param Input $input
      * @param string $name
@@ -44,6 +44,7 @@ class InputTest extends TestCase
      * @dataProvider provideExisting
      * @param Input $input
      * @param string $name
+     * @param bool $result
      */
     public function testExisting(Input $input, $name, $result)
     {

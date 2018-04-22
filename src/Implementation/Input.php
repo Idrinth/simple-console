@@ -7,12 +7,18 @@ use De\Idrinth\SimpleConsole\Interfaces\Input as InputInterface;
 
 class Input implements InputInterface
 {
+
+    /**
+     * @var array
+     */
+    private $data;
+
     /**
      * @param array $data
      */
     public function __construct(array $data)
     {
-
+        $this->data = $data;
     }
 
     /**
@@ -21,16 +27,16 @@ class Input implements InputInterface
      */
     public function has($name)
     {
-
+        return (array_key_exists($name, $this->data));
     }
 
     /**
      * @throws InvalidArgumentException
-     * @param type $name
+     * @param string $name
      * @return mixed
      */
     public function get($name)
     {
-        
+        return $this->data[$name];
     }
 }
