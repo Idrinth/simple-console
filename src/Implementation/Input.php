@@ -37,6 +37,10 @@ class Input implements InputInterface
      */
     public function get($name)
     {
-        return $this->data[$name];
+        if(array_key_exists($name, $this->data)){
+            return $this->data[$name];
+        }else{
+            throw new InvalidArgumentException('Existiert nicht');
+        }
     }
 }
