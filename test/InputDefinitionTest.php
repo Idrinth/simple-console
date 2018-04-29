@@ -83,7 +83,7 @@ class InputDefinitionTest extends TestCase
     /**
      * @return array
      */
-    public function provideWrongRequiredDeclaration()
+    public function provideWrongDeclaration()
     {
         return array(
             array(new ArrayDefinition('v', true, '[a-z]+'), 'v', true, array('v' => '0')),
@@ -99,7 +99,7 @@ class InputDefinitionTest extends TestCase
 
     /**
      * @test
-     * @dataProvider provideMissingRequiredDeclaration
+     * @dataProvider provideWrongDeclaration
      * @expectedException InvalidArgument
      * @expectedExceptionMessageRegExp /^.+ doesn't match expected format .+\./
      * @param InputDefinition $definition
@@ -109,7 +109,7 @@ class InputDefinitionTest extends TestCase
      * @param boolean $required
      * @param array $valid
      */
-    public function testWrongRequiredDeclaration(InputDefinition $definition, $name, $required, $input)
+    public function testWrongDeclaration(InputDefinition $definition, $name, $required, $input)
     {
         $this->assertEquals($name, $definition->getName());
         $this->assertEquals(false, $definition->isBoolean());
