@@ -1,9 +1,20 @@
 {
     "name": "idrinth/simple-console",
+    "description": "a simple console handler providing basic input validation and output handling.",
+    "keywords": [
+        "console",
+        "input-validation",
+        "cli",
+        "options"
+    ],
     "authors": [
         {
             "name": "Björn Büttner",
             "homepage": "https://github.com/idrinth"
+        },
+        {
+            "name": "Jonas",
+            "homepage": "https://github.com/jem94"
         }
     ],
     "require-dev": {
