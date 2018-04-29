@@ -29,8 +29,8 @@ class InputDefinition implements InputDefinitionInterface
     /**
      * @var mixed
      */
-
     private $default;
+
     /**
      * @param string $name
      * @param boolean $required
@@ -81,7 +81,7 @@ class InputDefinition implements InputDefinitionInterface
     {
 
         if(empty($input) && $this->isRequired()){
-            throw new \InvalidArgumentException("Required");
+            throw new \InvalidArgumentException("$this->name is required");
         }
         return array(
             $this->name => $this->default
