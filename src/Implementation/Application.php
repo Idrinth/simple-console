@@ -12,7 +12,7 @@ class Application implements ApplicationInterface
     /**
      * @var Command []
      */
-    private $commands = [];
+    private $commands = array();
 
     /**
      * @var array
