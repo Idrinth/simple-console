@@ -7,6 +7,31 @@ use De\Idrinth\SimpleConsole\Interfaces\InputDefinition as InputDefinitionInterf
 class InputDefinition implements InputDefinitionInterface
 {
     /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var bool
+     */
+    private $required;
+
+    /**
+     * @var bool
+     */
+    private $boolean;
+
+    /**
+     * @var string
+     */
+    private $regex;
+
+    /**
+     * @var mixed
+     */
+    private $default;
+
+    /**
      * @param string $name
      * @param boolean $required
      * @param boolean $boolean
@@ -15,7 +40,11 @@ class InputDefinition implements InputDefinitionInterface
      */
     public function __construct($name, $required, $boolean, $regex, $default)
     {
-
+        $this->name = $name;
+        $this->required = $required;
+        $this->boolean = $boolean;
+        $this->regex = $regex;
+        $this->default = $default;
     }
 
     /**
@@ -23,7 +52,7 @@ class InputDefinition implements InputDefinitionInterface
      */
     public function getName()
     {
-
+        return $this->name;
     }
 
     /**
@@ -31,7 +60,7 @@ class InputDefinition implements InputDefinitionInterface
      */
     public function isRequired()
     {
-
+        return $this->required;
     }
 
     /**
@@ -39,17 +68,23 @@ class InputDefinition implements InputDefinitionInterface
      */
     public function isBoolean()
     {
-
+        return $this->boolean;
     }
 
     /**
      * apply defaults and constraints and return cleaned array
      * @param array $input
      * @return array
-     * @throws InvalidArgumentException if it's required or missing or doesnn't match the constraints
+     * @throws \InvalidArgumentException if it's required or missing or doesn't match the constraints
      */
     public function process($input)
     {
 
+        if(empty($input) && $this->isRequired()){
+            throw new \InvalidArgumentException("$this->name is required");
+        }
+        return array(
+            $this->name => $this->default
+        );
     }
 }

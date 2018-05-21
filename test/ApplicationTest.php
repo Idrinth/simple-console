@@ -37,29 +37,29 @@ class ApplicationTest extends TestCase
                 array($cmd1, $cmd2),
                 array('hi.php'),
                 0,
-                "[37m[2m[3mName contains the following commands:[0m\n[37m[2m[3m - cmd1[0m\n[37m[2m[3m -cmd2[0m\n\n"
+                "[37m[2m[3mName contains the following commands:[0m\n[37m[2m[3m - cmd1[0m\n[37m[2m[3m - cmd2[0m\n\n"
             ),
             array(
                 new Application('Name'),
                 array($cmd1),
-                array('hi.php cmd2'),
+                array('hi.php', 'cmd2'),
                 1,
-                "[31m[1mName does not contains the following command: cmd2[0m\n\n"
+                "[31m[1mName does not contain the following command: cmd2[0m\n\n"
             ),
             array(
                 new Application('Name'),
                 array($cmd1, $cmd2),
-                array('hi.php cmd1'),
+                array('hi.php', 'cmd1'),
                 0,
                 "[32m[1mName ran cm1 sucessfully[0m\n\n"
             ),
             array(
                 new Application('Name'),
                 array($cmd1, $cmd2),
-                array('hi.php cmd2'),
-                2,
+                array('hi.php', 'cmd2'),
+                3,
                 "[31m[1mName failed running cmd2:[0m\n[33mI need a value[0m\n\n"
-            ),
+            )
         );
     }
 
