@@ -26,8 +26,8 @@ abstract class Command implements CommandInterface
     public function __construct($name, array $definitions = array())
     {
         $this->name = $name;
-        foreach($definitions as $definition) {
-            if($definition instanceof InputDefinitionInterface && !in_array($definition, $this->definitions)) {
+        foreach ($definitions as $definition) {
+            if ($definition instanceof InputDefinitionInterface && !in_array($definition, $this->definitions)) {
                 $this->definitions[] = $definition;
             }
         }

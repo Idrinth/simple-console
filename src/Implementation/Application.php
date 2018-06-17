@@ -43,15 +43,15 @@ class Application implements ApplicationInterface
      */
     public function run()
     {
-        if(count($this->args) === 1){
+        if (count($this->args) === 1) {
             $this->output->info($this->name . " contains the following commands:");
-            foreach($this->commands as $command){
+            foreach ($this->commands as $command) {
                 $this->output->info(" - ".$command->getName());
             }
             return 0;
         }
-        foreach($this->commands as $command) {
-            if($command->getName() === $this->args[1]) {
+        foreach ($this->commands as $command) {
+            if ($command->getName() === $this->args[1]) {
                 return $this->runCommand($command);
             }
         }
@@ -68,9 +68,9 @@ class Application implements ApplicationInterface
         try {
             $cmd = array();
             $oneChar='';
-            foreach($command->getDefinition() as $def) {
+            foreach ($command->getDefinition() as $def) {
                 $cmd[] = $def->getName().':';
-                if(strlen($def->getName()) === 1) {
+                if (strlen($def->getName()) === 1) {
                     $oneChar.=$def->getName().':';
                 }
             }

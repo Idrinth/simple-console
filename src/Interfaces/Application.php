@@ -10,7 +10,7 @@ interface Application
     public function run();
 
     /**
-     * @param \De\Idrinth\SimpleConsole\Interfaces\Command $command
+     * @param Command $command
      * @return Application
      */
     public function register(Command $command);

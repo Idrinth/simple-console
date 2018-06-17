@@ -80,7 +80,7 @@ class ApplicationTest extends TestCase
      */
     public function testRun(Application $application, array $commands, array $cliArgs, $exitCode, $output)
     {
-        foreach($commands as $command) {
+        foreach ($commands as $command) {
             $application->register($command);
         }
         $rfclass = new ReflectionClass($application);

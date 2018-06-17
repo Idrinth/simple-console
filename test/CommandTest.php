@@ -10,13 +10,14 @@ class CommandTest extends TestCase
     /**
      * @return array
      */
-    public function provideCommand() {
+    public function provideCommand()
+    {
         return array(
             array($this->getCommand(), 0, 8),
             array($this->getCommand(2), 2, 10),
-            array($this->getCommand(1,3), 1, 12),
-            array($this->getCommand(12,1), 12, 21),
-            array($this->getCommand(1,1,3), 1, 13)
+            array($this->getCommand(1, 3), 1, 12),
+            array($this->getCommand(12, 1), 12, 21),
+            array($this->getCommand(1, 1, 3), 1, 13)
         );
     }
 

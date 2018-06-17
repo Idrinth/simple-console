@@ -23,19 +23,19 @@ class ArrayDefinition extends InputDefinition
      */
     public function processValue($input)
     {
-        if($input === null || $input === '') {
-            if($this->isRequired()) {
+        if ($input === null || $input === '') {
+            if ($this->isRequired()) {
                 throw new InvalidArgumentException("{$this->getName()} is required.");
             }
             return $this->getDefault();
         }
         $data = array();
-        foreach((array) $input as $el) {
-            if(is_scalar($el) && strlen("$el") > 0 && $this->matchesRegex($el)) {
+        foreach ((array) $input as $el) {
+            if (is_scalar($el) && strlen("$el") > 0 && $this->matchesRegex($el)) {
                 $data[] = $el;
             }
         }
-        if(count($data) === 0) {
+        if (count($data) === 0) {
             throw new InvalidArgumentException("{$this->getName()} is required.");
         }
         return $data;

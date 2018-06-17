@@ -23,8 +23,8 @@ class ValueDefinition extends InputDefinition
      */
     public function processValue($input)
     {
-        if($input === null || $input === '') {
-            if($this->isRequired()) {
+        if ($input === null || $input === '') {
+            if ($this->isRequired()) {
                 throw new InvalidArgumentException("{$this->getName()} is required.");
             }
             return $this->getDefault();

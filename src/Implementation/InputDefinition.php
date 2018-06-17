@@ -99,21 +99,23 @@ abstract class InputDefinition implements InputDefinitionInterface
      * @return boolean
      * @throws InvalidArgumentException
      */
-    protected function matchesRegex($value) {
-        if(!$this->regex) {
+    protected function matchesRegex($value)
+    {
+        if (!$this->regex) {
             return true;
         }
-        if(preg_match('/^'.$this->regex.'$/', "$value")) {
+        if (preg_match('/^'.$this->regex.'$/', "$value")) {
             return true;
         }
-         throw new InvalidArgumentException("$this->name doesn't match expected format '$this->regex'.");
+        throw new InvalidArgumentException("$this->name doesn't match expected format '$this->regex'.");
     }
 
     /**
      * @param mixed $value
      * @return array
      */
-    private function getReturn($value) {
+    private function getReturn($value)
+    {
         if ($value === null) {
             return array();
         }
@@ -127,8 +129,8 @@ abstract class InputDefinition implements InputDefinitionInterface
      */
     final public function process($input)
     {
-        if((empty($input) || !is_array($input) || !array_key_exists($this->name, $input))) {
-            if($this->required){
+        if ((empty($input) || !is_array($input) || !array_key_exists($this->name, $input))) {
+            if ($this->required) {
                 throw new InvalidArgumentException("$this->name is required.");
             }
             return $this->getReturn($this->default);

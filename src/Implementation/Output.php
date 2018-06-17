@@ -51,8 +51,9 @@ class Output implements OutputInterface
      * @param string $message
      * @return void
      */
-    private function output($format, $message){
-        if(!empty($message)){
+    private function output($format, $message)
+    {
+        if (!empty($message)) {
             echo $format.$message.self::$formatReset;
         }
         echo "\n";
