@@ -61,8 +61,12 @@ class CommandTest extends TestCase
     {
         $this->assertInternalType('array', $command->getDefinition());
         $this->assertCount($size, $command->getDefinition());
-        $this->assertInternalType('int', $command->execute());
-        $this->assertEquals($return, $command->execute());
+        $code = $command->execute(
+            $this->getMockBuilder('De\Idrinth\SimpleConsole\Interfaces\Input')->getMock(),
+            $this->getMockBuilder('De\Idrinth\SimpleConsole\Interfaces\Output')->getMock()
+        );
+        $this->assertInternalType('int', $code);
+        $this->assertEquals($return, $code);
         $this->assertEquals('name', $command->getName());
     }
 }

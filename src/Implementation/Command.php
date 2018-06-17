@@ -10,12 +10,27 @@ use De\Idrinth\SimpleConsole\Interfaces\InputDefinition as InputDefinitionInterf
 abstract class Command implements CommandInterface
 {
     /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var InputDefinitionInterface[]
+     */
+    private $definitions = array();
+
+    /**
      * @param string $name
-     * @param InputDefinitionInterface $definitions
+     * @param InputDefinitionInterface[] $definitions
      */
     public function __construct($name, array $definitions = array())
     {
-
+        $this->name = $name;
+        foreach($definitions as $definition) {
+            if($definition instanceof InputDefinitionInterface && !in_array($definition, $this->definitions)) {
+                $this->definitions[] = $definition;
+            }
+        }
     }
 
     /**
@@ -23,7 +38,7 @@ abstract class Command implements CommandInterface
      */
     public function getName()
     {
-
+        return $this->name;
     }
 
     /**
@@ -31,7 +46,7 @@ abstract class Command implements CommandInterface
      */
     public function getDefinition()
     {
-
+        return $this->definitions;
     }
 
     /**
