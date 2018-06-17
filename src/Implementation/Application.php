@@ -4,6 +4,7 @@ namespace De\Idrinth\SimpleConsole\Implementation;
 
 use De\Idrinth\SimpleConsole\Interfaces\Command as CommandInterface;
 use De\Idrinth\SimpleConsole\Interfaces\Application as ApplicationInterface;
+use De\Idrinth\SimpleConsole\Interfaces\Input as InputInterface;
 
 class Application implements ApplicationInterface
 {
@@ -32,7 +33,7 @@ class Application implements ApplicationInterface
      */
     public function __construct($name)
     {
-        $this->setName($name);
+        $this->name = $name;
         $this->args = $_SERVER['argv'];
         $this->output = new Output();
     }
@@ -50,10 +51,9 @@ class Application implements ApplicationInterface
             return 0;
         }
         foreach($this->commands as $command) {
-            if($command->getName() !== $this->args[1]) {
-                continue;
+            if($command->getName() === $this->args[1]) {
+                return $this->runCommand($command);
             }
-            return $this->runCommand($command);
         }
         $this->output->error("$this->name does not contain the following command: {$this->args[1]}");
         return 1;
@@ -69,18 +69,12 @@ class Application implements ApplicationInterface
             $cmd = array();
             $oneChar='';
             foreach($command->getDefinition() as $def) {
-                $cmd[] = $command->getName().':';
-                if(strlen($command->getName()) === 1) {
-                    $oneChar.=$command->getName().':';
+                $cmd[] = $def->getName().':';
+                if(strlen($def->getName()) === 1) {
+                    $oneChar.=$def->getName().':';
                 }
             }
-            $exit = $command->execute(new Input(getopt($oneChar, $cmd)), $this->output);
-            if(!$exit) {
-                $this->output->success("$this->name ran {$command->getName()} sucessfully");
-            } else {
-                $this->output->error("$this->name failed to run {$command->getName()} sucessfully");
-            }
-            return $exit;
+            return $this->returnWithMessage($command, new Input(getopt($oneChar, $cmd)));
         } catch (\Exception $e) {
             $this->output->error("$this->name failed to run {$command->getName()}");
             $this->output->warning($e->getMessage());
@@ -90,17 +84,26 @@ class Application implements ApplicationInterface
 
     /**
      * @param CommandInterface $command
+     * @param InputInterface $input
+     * @return int
+     */
+    private function returnWithMessage(CommandInterface $command, InputInterface $input)
+    {
+        $exit = (int) $command->execute($input, $this->output);
+        if ($exit === 0) {
+            $this->output->success("$this->name ran {$command->getName()} successfully");
+            return 0;
+        }
+        $this->output->error("$this->name failed to run {$command->getName()} successfully");
+        return $exit;
+    }
+
+    /**
+     * @param CommandInterface $command
      * @return Application
      */
     public function register(CommandInterface $command)
     {
         $this->commands[] = $command;
-    }
-
-    /**
-     * @param string $name
-     */
-    private function setName($name){
-        $this->name = $name;
     }
 }

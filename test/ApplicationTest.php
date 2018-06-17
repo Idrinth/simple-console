@@ -57,7 +57,7 @@ class ApplicationTest extends TestCase
                 array($cmd1, $cmd2),
                 array('hi.php', 'cmd1'),
                 0,
-                "[32m[1mName ran cmd1 sucessfully[0m\n"
+                "[32m[1mName ran cmd1 successfully[0m\n"
             ),
             array(
                 new Application('Name'),

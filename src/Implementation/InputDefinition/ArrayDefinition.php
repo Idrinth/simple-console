@@ -31,7 +31,7 @@ class ArrayDefinition extends InputDefinition
         }
         $data = array();
         foreach((array) $input as $el) {
-            if($el!==null && $el!=='' && $this->matchesRegex($el)) {
+            if(is_scalar($el) && strlen("$el") > 0 && $this->matchesRegex($el)) {
                 $data[] = $el;
             }
         }
