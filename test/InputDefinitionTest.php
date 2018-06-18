@@ -9,7 +9,6 @@ use De\Idrinth\SimpleConsole\Implementation\InputDefinition\ValueDefinition;
 use De\Idrinth\SimpleConsole\Interfaces\InputDefinition;
 use PHPUnit\Framework\TestCase;
 
-
 class InputDefinitionTest extends TestCase
 {
     /**
@@ -17,20 +16,26 @@ class InputDefinitionTest extends TestCase
      */
     public function provideOptionalDeclaration()
     {
+        $boolArray = new BoolArrayDefinition('v');
+        $bool = new BoolDefinition('v');
+        $arrayDefault = new ArrayDefinition('v', false, '[a-z]+', array('a'));
+        $arrayNoDefault = new ArrayDefinition('v', false, '[a-z]+', null);
+        $valueDefault = new ValueDefinition('v', false, '[a-z]+', 'a');
+        $valueNoDefault = new ValueDefinition('v', false, '[0-9]+', null);
         return array(
-            "BoolArray 1"=>array(new BoolArrayDefinition('v'), 'v', true, array(), array('v'=>0)),
-            "BoolArray 2"=>array(new BoolArrayDefinition('v'), 'v', true, array('v' => null), array('v'=>1)),
-            "BoolArray 3"=>array(new BoolArrayDefinition('v'), 'v', true, array('v' => array(null, null)), array('v'=>2)),
-            "Bool 1"=>array(new BoolDefinition('v'), 'v', true, array(), array('v'=>false)),
-            "Bool 2"=>array(new BoolDefinition('v'), 'v', true, array('v' => null), array('v'=>true)),
-            "Bool 3"=>array(new BoolDefinition('v'), 'v', true, array('v' => array(null, null)), array('v'=>true)),
-            "Array 1"=>array(new ArrayDefinition('v', false, '[a-z]+', null), 'v', false, array(), array()),
-            "Array 2"=>array(new ArrayDefinition('v', false, '[a-z]+', null), 'v', false, array('v' => 'q'), array('v' => array('q'))),
-            "Array 3"=>array(new ArrayDefinition('v', false, '[a-z]+', array('a')), 'v', false, array('v' => null), array('v'=>array('a'))),
-            "Array 4"=>array(new ArrayDefinition('v', false, '[a-z]+', array('a')), 'v', false, array('v' => 'hi'), array('v'=>array('hi'))),
-            "Value 1"=>array(new ValueDefinition('v', false, '[0-9]+', null), 'v', false, array('v' => null), array()),
-            "Value 2"=>array(new ValueDefinition('v', false, '[a-z]+', 'a'), 'v', false, array('v' => null), array('v'=>'a')),
-            "Value 3"=>array(new ValueDefinition('v', false, '[a-z]+', 'a'), 'v', false, array('v' => 'hi'), array('v'=>'hi')),
+            "BoolArray 1"=>array($boolArray, 'v', true, array(), array('v'=>0)),
+            "BoolArray 2"=>array($boolArray, 'v', true, array('v' => null), array('v'=>1)),
+            "BoolArray 3"=>array($boolArray, 'v', true, array('v' => array(null, null)), array('v'=>2)),
+            "Bool 1"=>array($bool, 'v', true, array(), array('v'=>false)),
+            "Bool 2"=>array($bool, 'v', true, array('v' => null), array('v'=>true)),
+            "Bool 3"=>array($bool, 'v', true, array('v' => array(null, null)), array('v'=>true)),
+            "Array 1"=>array($arrayNoDefault, 'v', false, array(), array()),
+            "Array 2"=>array($arrayNoDefault, 'v', false, array('v' => 'q'), array('v' => array('q'))),
+            "Array 3"=>array($arrayDefault, 'v', false, array('v' => null), array('v'=>array('a'))),
+            "Array 4"=>array($arrayDefault, 'v', false, array('v' => 'hi'), array('v'=>array('hi'))),
+            "Value 1"=>array($valueNoDefault, 'v', false, array('v' => null), array()),
+            "Value 2"=>array($valueDefault, 'v', false, array('v' => null), array('v'=>'a')),
+            "Value 3" => array($valueDefault, 'v', false, array('v' => 'hi'), array('v' => 'hi')),
         );
     }
 
