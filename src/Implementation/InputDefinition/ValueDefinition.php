@@ -21,7 +21,7 @@ class ValueDefinition extends InputDefinition
      * @param mixed $input
      * @return mixed
      */
-    public function processValue($input)
+    protected function processValue($input)
     {
         if ($input === null || $input === '') {
             if ($this->isRequired()) {

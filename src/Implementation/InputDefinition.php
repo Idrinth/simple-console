@@ -129,7 +129,7 @@ abstract class InputDefinition implements InputDefinitionInterface
      */
     final public function process($input)
     {
-        if ((empty($input) || !is_array($input) || !array_key_exists($this->name, $input))) {
+        if (empty($input) || !is_array($input) || !array_key_exists($this->name, $input)) {
             if ($this->required) {
                 throw new InvalidArgumentException("$this->name is required.");
             }

@@ -12,7 +12,7 @@ interface Command
     /**
      * @return InputDefinition[]
      */
-    public function getDefinition();
+    public function getDefinitions();
 
     /**
      * @param Input $input

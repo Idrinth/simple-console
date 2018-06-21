@@ -68,7 +68,7 @@ class Application implements ApplicationInterface
         try {
             $cmd = array();
             $oneChar='';
-            foreach ($command->getDefinition() as $def) {
+            foreach ($command->getDefinitions() as $def) {
                 $cmd[] = $def->getName().':';
                 if (strlen($def->getName()) === 1) {
                     $oneChar.=$def->getName().':';

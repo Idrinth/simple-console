@@ -21,7 +21,7 @@ class ApplicationTest extends TestCase
             ->method('getName')
             ->willReturn('cmd1');
         $cmd1->expects($this->any())
-            ->method('getDefinition')
+            ->method('getDefinitions')
             ->willReturn(array());
         $cmd1->expects($this->any())
             ->method('execute')
@@ -32,7 +32,7 @@ class ApplicationTest extends TestCase
             ->method('getName')
             ->willReturn('cmd2');
         $cmd2->expects($this->any())
-            ->method('getDefinition')
+            ->method('getDefinitions')
             ->willReturn(array());
         $cmd2->expects($this->any())
             ->method('execute')

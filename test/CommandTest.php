@@ -60,8 +60,8 @@ class CommandTest extends TestCase
      */
     public function testCommand(Command $command, $size, $return)
     {
-        $this->assertInternalType('array', $command->getDefinition());
-        $this->assertCount($size, $command->getDefinition());
+        $this->assertInternalType('array', $command->getDefinitions());
+        $this->assertCount($size, $command->getDefinitions());
         $code = $command->execute(
             $this->getMockBuilder('De\Idrinth\SimpleConsole\Interfaces\Input')->getMock(),
             $this->getMockBuilder('De\Idrinth\SimpleConsole\Interfaces\Output')->getMock()

@@ -44,7 +44,7 @@ abstract class Command implements CommandInterface
     /**
      * @return InputDefinitionInterface[]
      */
-    public function getDefinition()
+    public function getDefinitions()
     {
         return $this->definitions;
     }

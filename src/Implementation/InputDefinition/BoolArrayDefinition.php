@@ -17,7 +17,7 @@ class BoolArrayDefinition extends InputDefinition
      * @param mixed $input
      * @return int
      */
-    public function processValue($input)
+    protected function processValue($input)
     {
         if (is_array($input)) {
             return count($input);

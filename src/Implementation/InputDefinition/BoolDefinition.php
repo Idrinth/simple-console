@@ -17,7 +17,7 @@ class BoolDefinition extends InputDefinition
      * @param mixed $input
      * @return boolean
      */
-    public function processValue($input)
+    protected function processValue($input)
     {
         return true;
     }
