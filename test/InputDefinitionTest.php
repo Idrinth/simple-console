@@ -107,7 +107,7 @@ class InputDefinitionTest extends TestCase
      * @test
      * @dataProvider provideWrongDeclaration
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessageRegExp /^.+ doesn't match expected format '.+'\./
+     * @expectedExceptionMessageRegExp /^.+ doesn't match expected format \/.+\/\./
      * @param InputDefinition $definition
      * @param type $name
      * @param boolean $boolean

@@ -107,7 +107,7 @@ abstract class InputDefinition implements InputDefinitionInterface
         if (preg_match('/^'.$this->regex.'$/', "$value")) {
             return true;
         }
-        throw new InvalidArgumentException("$this->name doesn't match expected format '$this->regex'.");
+        throw new InvalidArgumentException("$this->name doesn't match expected format /^$this->regex\$/.");
     }
 
     /**

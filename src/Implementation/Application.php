@@ -2,9 +2,11 @@
 
 namespace De\Idrinth\SimpleConsole\Implementation;
 
-use De\Idrinth\SimpleConsole\Interfaces\Command as CommandInterface;
 use De\Idrinth\SimpleConsole\Interfaces\Application as ApplicationInterface;
+use De\Idrinth\SimpleConsole\Interfaces\Command as CommandInterface;
 use De\Idrinth\SimpleConsole\Interfaces\Input as InputInterface;
+use De\Idrinth\SimpleConsole\Interfaces\Output as OutputInterface;
+use Exception;
 
 class Application implements ApplicationInterface
 {
@@ -75,7 +77,7 @@ class Application implements ApplicationInterface
                 }
             }
             return $this->returnWithMessage($command, new Input(getopt($oneChar, $cmd)));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->output->error("$this->name failed to run {$command->getName()}");
             $this->output->warning($e->getMessage());
             return 3;
