@@ -12,11 +12,11 @@ interface Command
     /**
      * @return InputDefinition[]
      */
-    public function getDefinition();
+    public function getDefinitions();
 
     /**
-     * @param \De\Idrinth\SimpleConsole\Interfaces\Input $input
-     * @param \De\Idrinth\SimpleConsole\Interfaces\Output $output
+     * @param Input $input
+     * @param Output $output
      * @return int exit code
      */
     public function execute(Input $input, Output $output);

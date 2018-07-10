@@ -3,8 +3,9 @@
 namespace De\Idrinth\SimpleConsole\Implementation;
 
 use De\Idrinth\SimpleConsole\Interfaces\InputDefinition as InputDefinitionInterface;
+use InvalidArgumentException;
 
-class InputDefinition implements InputDefinitionInterface
+abstract class InputDefinition implements InputDefinitionInterface
 {
     /**
      * @var string
@@ -64,6 +65,22 @@ class InputDefinition implements InputDefinitionInterface
     }
 
     /**
+     * @return mixed
+     */
+    protected function getDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getRegex()
+    {
+        return $this->regex;
+    }
+
+    /**
      * @return boolean
      */
     public function isBoolean()
@@ -72,19 +89,52 @@ class InputDefinition implements InputDefinitionInterface
     }
 
     /**
-     * apply defaults and constraints and return cleaned array
-     * @param array $input
-     * @return array
-     * @throws \InvalidArgumentException if it's required or missing or doesn't match the constraints
+     * @param mixed $value
+     * @return mixed
      */
-    public function process($input)
-    {
+    abstract protected function processValue($value);
 
-        if(empty($input) && $this->isRequired()){
-            throw new \InvalidArgumentException("$this->name is required");
+    /**
+     * @param string $value
+     * @return boolean
+     * @throws InvalidArgumentException
+     */
+    protected function matchesRegex($value)
+    {
+        if (!$this->regex) {
+            return true;
         }
-        return array(
-            $this->name => $this->default
-        );
+        if (preg_match('/^'.$this->regex.'$/', "$value")) {
+            return true;
+        }
+        throw new InvalidArgumentException("$this->name doesn't match expected format /^$this->regex\$/.");
+    }
+
+    /**
+     * @param mixed $value
+     * @return array
+     */
+    private function getReturn($value)
+    {
+        if ($value === null) {
+            return array();
+        }
+        return array($this->name => $value);
+    }
+
+    /**
+     * @param mixed $input
+     * @return array
+     * @throws InvalidArgumentException
+     */
+    final public function process($input)
+    {
+        if (empty($input) || !is_array($input) || !array_key_exists($this->name, $input)) {
+            if ($this->required) {
+                throw new InvalidArgumentException("$this->name is required.");
+            }
+            return $this->getReturn($this->default);
+        }
+        return $this->getReturn($this->processValue($input[$this->name]));
     }
 }
